@@ -880,6 +880,194 @@
         animation: none !important;
       }
     }
+
+    /* Product card photo: curved top corners that follow the card's own curve (all screen sizes) */
+    html body #productGallery .product-card > div:first-child {
+      border-radius: 1.5rem 1.5rem 0 0 !important;
+      overflow: hidden;
+    }
+    html body #productGallery .product-card > div:first-child img {
+      border-radius: 1.1rem 1.1rem 0 0;
+    }
+    @media (max-width: 767px) {
+      html body #productGallery .product-card > div:first-child {
+        border-radius: 1rem 1rem 0 0 !important;
+      }
+      html body #productGallery .product-card > div:first-child img {
+        border-radius: 0.65rem 0.65rem 0 0;
+      }
+    }
+
+    /* Readability on custom backgrounds (Settings > App Background):
+       darker muted text so labels stay legible on bright gradients / images */
+    html body[style*="background"] main .text-slate-400,
+    html body[style*="background"] main .text-slate-500,
+    html body[style*="background"] main .text-slate-600 {
+      color: #334155 !important;
+    }
+    html.dark body[style*="background"] main .text-slate-400,
+    html.dark body[style*="background"] main .text-slate-500,
+    html.dark body[style*="background"] main .text-slate-600 {
+      color: #e2e8f0 !important;
+    }
+    html body[style*="background"] main .text-slate-700,
+    html body[style*="background"] main .text-slate-800,
+    html body[style*="background"] main .text-slate-900 {
+      color: #0f172a !important;
+    }
+    html.dark body[style*="background"] main .text-slate-700,
+    html.dark body[style*="background"] main .text-slate-800,
+    html.dark body[style*="background"] main .text-slate-900 {
+      color: #f8fafc !important;
+    }
+
+    /* Theme-aware text: white in dark mode, near-black in light mode */
+    html.dark body[style*="background"] main .text-slate-400,
+    html.dark body[style*="background"] main .text-slate-500,
+    html.dark body[style*="background"] main .text-slate-600,
+    html.dark body[style*="background"] main .text-slate-700,
+    html.dark body[style*="background"] main .text-slate-800,
+    html.dark body[style*="background"] main .text-slate-900,
+    html.dark body[style*="background"] main [class*="text-slate-555"] {
+      color: #ffffff !important;
+    }
+    html body[style*="background"] main [class*="text-slate-555"] { color: #334155 !important; }
+
+    /* Product specs modal: more solid panel + high-contrast text per theme */
+    /* (glass background untouched; only the font colors change).
+       Black text in light mode, white text in dark mode. */
+    html:not(.dark) body #productModal,
+    html:not(.dark) body #productModal .text-slate-400,
+    html:not(.dark) body #productModal .text-slate-500,
+    html:not(.dark) body #productModal .text-slate-600,
+    html:not(.dark) body #productModal .text-slate-700,
+    html:not(.dark) body #productModal .text-slate-800,
+    html:not(.dark) body #productModal .text-slate-900,
+    html:not(.dark) body #productModal .text-slate-950,
+    html:not(.dark) body #productModal [class*="text-slate-555"],
+    html:not(.dark) body #productModal h2,
+    html:not(.dark) body #productModal h4,
+    html:not(.dark) body #productModal #productModalPanel > div:first-child span { color: #000000 !important; }
+    html.dark body #productModal,
+    html.dark body #productModal .text-slate-400,
+    html.dark body #productModal .text-slate-500,
+    html.dark body #productModal .text-slate-600,
+    html.dark body #productModal .text-slate-700,
+    html.dark body #productModal .text-slate-800,
+    html.dark body #productModal .text-slate-900,
+    html.dark body #productModal .text-slate-950,
+    html.dark body #productModal [class*="text-slate-555"],
+    html.dark body #productModal h2,
+    html.dark body #productModal h4,
+    html.dark body #productModal #productModalPanel > div:first-child span { color: #ffffff !important; }
+    /* SRP amount + label in blue */
+    html body #productModal .bg-primary-50 .text-primary-500,
+    html body #productModal .bg-primary-50 .text-primary-600 { color: #2563eb !important; }
+    html.dark body #productModal .bg-primary-50 .text-primary-500,
+    html.dark body #productModal .bg-primary-50 .text-primary-600,
+    html.dark body #productModal .bg-primary-800\/30 .text-primary-500,
+    html.dark body #productModal .bg-primary-800\/30 .text-primary-600 { color: #60a5fa !important; }
+    html body #productModal .text-danger-500 { color: #fb7185 !important; }
+    html body #productModal .text-amber-500 { color: #fbbf24 !important; }
+    /* quantity box has its own solid background: dark text in light mode, white in dark mode */
+    html:not(.dark) body #productModal input { color: #000000 !important; }
+    html.dark body #productModal input { color: #ffffff !important; }
+    html.dark body #productModal .text-primary-500,
+    html.dark body #productModal .text-primary-600 { color: #c7d2fe !important; }
+    /* the light-lavender SRP card keeps readable dark text in light mode */
+    html:not(.dark) body #productModal .bg-primary-50 .text-slate-500 { color: #000000 !important; }
+    /* white controls (quantity +/-, Close button) keep dark text in light mode */
+    html:not(.dark) body #productModal .bg-white .text-slate-500,
+    html:not(.dark) body #productModal .bg-white.text-slate-700 { color: #334155 !important; }
+
+    /* ======================================================================
+       MOBILE ONLY (<= 767px): borderless, edge-to-edge layout.
+       Desktop/tablet (>= 768px) is not touched by anything in this block.
+       Modals, alerts and the lightbox live outside <main>, so they keep their look.
+       ====================================================================== */
+    @media (max-width: 767px) {
+      /* Use the full screen width */
+      html body main#mainScrollContainer {
+        padding: 0.75rem 0.5rem calc(1.5rem + env(safe-area-inset-bottom)) !important;
+        overflow-x: hidden;
+      }
+      html body main#mainScrollContainer > section { max-width: 100%; }
+      html body main#mainScrollContainer > section.space-y-8 > :not([hidden]) ~ :not([hidden]),
+      html body main#mainScrollContainer > section.space-y-6 > :not([hidden]) ~ :not([hidden]) {
+        margin-top: 0.75rem !important;
+      }
+      html body main#mainScrollContainer img,
+      html body main#mainScrollContainer table { max-width: 100%; }
+
+      /* Remove every border/outline line inside the app area
+         (checkboxes keep theirs so they stay visible) */
+      html body main#mainScrollContainer *:not(input[type="checkbox"]) {
+        border-color: transparent !important;
+      }
+
+      /* Top bar + sidebar: no edge lines */
+      html body header.h-16,
+      html body #sidebarMenu {
+        border: none !important;
+        box-shadow: none !important;
+      }
+
+      /* Big wrapper panels: no box at all, content sits directly on the background */
+      html body main#mainScrollContainer > section > .glass-panel {
+        border: none !important;
+        box-shadow: none !important;
+        background: transparent !important;
+        -webkit-backdrop-filter: none !important;
+        backdrop-filter: none !important;
+        border-radius: 0 !important;
+        padding: 0.25rem !important;
+      }
+
+      /* Nested cards: soft fill instead of an outline */
+      html body main#mainScrollContainer .glass-panel,
+      html body main#mainScrollContainer .product-card,
+      html body main#mainScrollContainer .checklist-card {
+        box-shadow: none !important;
+        border-radius: 1rem !important;
+      }
+      html body main#mainScrollContainer .product-card:hover {
+        transform: none;
+        box-shadow: none !important;
+      }
+
+      /* Tighter grids so content fits the screen */
+      html body #productGallery { gap: 0.5rem !important; }
+      html body #view-dashboard-section .grid { gap: 0.5rem; }
+
+      /* Product specs modal: full-screen sheet, no borders */
+      html body #productModal {
+        padding: 0 !important;
+        align-items: stretch !important;
+      }
+      html body #productModal #productModalPanel {
+        max-width: 100% !important;
+        width: 100% !important;
+        max-height: 100dvh !important;
+        height: 100dvh;
+        border: none !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        padding-top: env(safe-area-inset-top);
+        padding-bottom: env(safe-area-inset-bottom);
+      }
+      html body #productModal #productModalPanel > div:first-child,
+      html body #productModal #productModalPanel > div:last-child {
+        border-radius: 0 !important;
+      }
+      html body #productModal #modalContent { padding: 0.75rem !important; }
+      html body #productModal *:not(input[type="checkbox"]) {
+        border-color: transparent !important;
+      }
+      html body #productModal #modalContent .rounded-2xl,
+      html body #productModal #modalContent .rounded-xl {
+        box-shadow: none !important;
+      }
+    }
   </style>
 </head>
 <body class="font-sans antialiased text-slate-800 dark:text-slate-100 bg-slate-50 dark:bg-slate-950 min-h-screen transition-colors duration-300">
